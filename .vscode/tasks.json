@@ -1,0 +1,28 @@
+{
+    "tasks":
+    [
+        {
+            "label": "build",
+            "type": "shell",
+            "windows":
+            {
+                "command": "cmake . -Bbuild -G \"MinGW Makefiles\" && make -C build"
+            },
+            "linux":
+            {
+                "command": "cmake . -Bbuild && make -C build",
+            },
+            "presentation":
+            {
+                "reveal": "silent",
+                "showReuseMessage": false
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"]
+        },
+    ],
+    "version": "2.0.0"
+}

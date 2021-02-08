@@ -1,0 +1,10 @@
+{
+    "configurations":
+    [
+        {
+            "name": "vulkan-example",
+            "compileCommands": "build/compile_commands.json"
+        }
+    ],
+    "version": 4
+}
