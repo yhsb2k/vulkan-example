@@ -14,6 +14,7 @@ endif()
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "")
 set(GLFW_INSTALL OFF CACHE BOOL "")
 add_subdirectory(src/third_party/glfw)
+add_subdirectory(src/third_party/glm)
 
 include_directories(src)
 
@@ -29,5 +30,6 @@ add_executable(${CMAKE_PROJECT_NAME} src/main.cpp)
 target_link_libraries(${CMAKE_PROJECT_NAME}
     PRIVATE
         glfw
+        glm
         vulkan-1
 )
