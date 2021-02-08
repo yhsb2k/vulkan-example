@@ -11,6 +11,10 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     set(CMAKE_BUILD_TYPE Debug)
 endif()
 
+set(GLFW_BUILD_DOCS OFF CACHE BOOL "")
+set(GLFW_INSTALL OFF CACHE BOOL "")
+add_subdirectory(src/third_party/glfw)
+
 include_directories(src)
 
 file(GLOB VulkanSDK "C:/VulkanSDK/*")
@@ -24,5 +28,6 @@ add_executable(${CMAKE_PROJECT_NAME} src/main.cpp)
 
 target_link_libraries(${CMAKE_PROJECT_NAME}
     PRIVATE
+        glfw
         vulkan-1
 )
