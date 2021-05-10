@@ -18,25 +18,10 @@ add_subdirectory(src/third_party/glm)
 
 include_directories(src)
 
-# Locate Vulkan SDK
-if(DEFINED ENV{VULKAN_SDK})
-    message(STATUS "Vulkan SDK: " $ENV{VULKAN_SDK})
-    include_directories($ENV{VULKAN_SDK}/Include)
-    link_directories($ENV{VULKAN_SDK}/Lib)
-else()
-    if(WIN32)
-        file(GLOB VULKAN_SDK "C:/VulkanSDK/*")
-        include_directories(${VULKAN_SDK}/Include)
-        link_directories(${VULKAN_SDK}/Lib)
-    else()
-        file(GLOB VULKAN_SDK "~/vulkan/*")
-        include_directories(${VULKAN_SDK}/x86_64/include)
-        link_directories(${VULKAN_SDK}/x86_64/lib)
-        # If Vulkan SDK was installed using .deb package:
-        #include_directories(/usr/include)
-        #link_directories(/usr/lib/x86_64-linux-gnu)
-    endif()
-    message(STATUS "Vulkan SDK: " ${VULKAN_SDK})
+# VULKAN_SDK environment variable is used to locate Vulkan SDK
+find_package(Vulkan)
+if(NOT Vulkan_FOUND)
+    message(FATAL_ERROR "Vulkan SDK not found. See https://vulkan.lunarg.com/sdk/home")
 endif()
 
 add_executable(${CMAKE_PROJECT_NAME} src/main.cpp)
@@ -49,5 +34,5 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
     PRIVATE
         glfw
         glm
-        vulkan$<$<PLATFORM_ID:Windows>:-1>
+        Vulkan::Vulkan
 )
