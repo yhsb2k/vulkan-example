@@ -8,7 +8,8 @@ git clone --recursive https://github.com/yhsb2k/vulkan-example.git
 cd vulkan-example
 make
 
-.\build\vulkan-example
+cd build
+vulkan-example
 ```
 
 ## Requirements
@@ -16,4 +17,4 @@ make
 * [cmake](https://cmake.org)
 * [make](https://www.gnu.org/software/make)
 * [VulkanSDK](https://vulkan.lunarg.com/sdk/home)
-* *For linux: libxrandr-dev, libxinerama-dev, libxcursor, libxi*
+* *For linux: libxrandr-dev, libxinerama-dev, libxcursor-dev, libxi-dev*
